@@ -54,6 +54,12 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <p><%=shoe.brand%></p>
 <p><%=shoe.release%></p>
 <p><%=shoe.hyperating%></p>
+<form method="POST" action="/shoes/<%=shoe.id%>">
+<input type="hidden" name="_method" value="delete">
+
+
+<button type="submit"> Delete Shoe</button>
+</form>
 <% end %>
 
     <a href= "/shoes/new"> Create a Shoe</a>

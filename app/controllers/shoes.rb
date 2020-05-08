@@ -45,6 +45,13 @@ class ShoesController < ApplicationController
         @shoe.update(new_info)
         redirect "/shoes"
     end
+
+    delete '/shoes/:id' do
+        setshoe
+        @shoe.destroy
+        erb :"shoes/index"
+    end
+
     private
     def setshoe
         @shoe = Shoe.find(params[:id])
