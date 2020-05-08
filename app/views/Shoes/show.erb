@@ -1,0 +1,12 @@
+<h1><%=@shoe.name%></h1>
+<p><%=@shoe.date%></p>
+<p><%=@shoe.brand%></p>
+<p><%=@shoe.release%></p>
+<p><%=@shoe.hyperating%></p>
+
+
+<input type="hidden" name="_method" value="delete">
+
+<% if @shoe.user == current_user%> 
+<button type="submit"> Delete Shoe</button>
+<% end %>

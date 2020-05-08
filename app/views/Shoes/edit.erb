@@ -1,0 +1,12 @@
+<h1>Edit Kicks!</h1>
+    <form action="/index/<%= @shoe.id%>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+
+    <h3>Name: <input type="text" name="name" value= "<%= @shoe.name %>"></h3>
+    <h3>Date: <input type="text" name="date" value= "<%= @shoe.date %>"></h3>
+    <h3>Brand: <input type="text" name="notes" value= "<%= @shoe.brand %>"></h3>
+    <h3>release: <input type="text" name="notes" value= "<%= @shoe.release %>"></h3>
+    <h3>Hype Rating: <input type="text" name="notes" value= "<%= @shoe.hyperating %>"></h3>
+    
+    <input type="submit" name="submit" value="Update Kicks!">
+</form>
