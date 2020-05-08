@@ -4,9 +4,11 @@
 <p><%=@shoe.release%></p>
 <p><%=@shoe.hyperating%></p>
 
-
+<button <a href="/shoes/<%=@shoe.id%>/edit">Edit Kicks:</a></button>
+<% if @shoe.user == current_user%> 
+<form method="POST" action="/shoes/<%=@shoe.id%>">
 <input type="hidden" name="_method" value="delete">
 
-<% if @shoe.user == current_user%> 
+
 <button type="submit"> Delete Shoe</button>
 <% end %>

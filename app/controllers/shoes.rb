@@ -18,19 +18,36 @@ class ShoesController < ApplicationController
         end
     end
 
-    get '/shoes/:id' do
-        @shoe = Shoe.find(params[:id])
-        erb :"shoe/show"
-    end
 
     post '/shoes/new' do
-        binding.pry
         shoe = current_user.shoes.new(params)
         
         if shoe.save
-            redirect '/shoes/#{shoe.id}'
+            redirect "/shoes/#{shoe.id}"
         else shoe.save
             redirect '/shoes'
         end
     end
+
+    get '/shoes/:id' do
+        setshoe
+        erb :"shoes/show"
+    end
+
+    get '/shoes/:id/edit' do
+        setshoe
+        erb :"shoes/edit"
+    end
+
+    patch '/shoes/:id' do
+        setshoe
+        new_info = params.reject!{|k| k == "_method"}
+        @shoe.update(new_info)
+        redirect "/shoes"
+    end
+    private
+    def setshoe
+        @shoe = Shoe.find(params[:id])
+    end
+    
 end

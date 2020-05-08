@@ -10,7 +10,7 @@
 body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 .w3-row-padding img {margin-bottom: 2px}
 /* Set the width of the sidebar to 120px */
-.w3-sidebar {width: 100px; background: #ffffff;}
+.w3-sidebar {width: 100px; height: 100px; background: #ffffff;}
 /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
 #main {margin-left: 120px}
 /* Remove margins from "page content" on small screens */
@@ -22,7 +22,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <!-- Avatar image in top left corner -->
   <img src="images/SNBox.png" style="width:30%">
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">
+  <a href="/shoes" class="w3-bar-item w3-button w3-padding-large w3-white">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
   </a>
@@ -31,7 +31,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <!-- Navbar on small screens (Hidden on medium and large screens) -->
 <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
   <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+    <a href="" class="w3-bar-item w3-button" style="height:500px width:25% !important">HOME</a>
    </div>
 </div>
 
@@ -44,11 +44,20 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
   <!-- About Section -->
   <div class="w3-content w3-justify w3-text-black w3-padding-64" id="about">
-    <h2 class="w3-text-black">Collecit</h2>
+    <h2 class="w3-text-black">Collection</h2>
     <hr style="width:200px" class="w3-opacity">
     <p>
 
+<% @shoes.each do |shoe| %>
+<h1><%=shoe.name%></h1>
+<p><%=shoe.date%></p>
+<p><%=shoe.brand%></p>
+<p><%=shoe.release%></p>
+<p><%=shoe.hyperating%></p>
+<% end %>
+
     <a href= "/shoes/new"> Create a Shoe</a>
+    
 
 
 
