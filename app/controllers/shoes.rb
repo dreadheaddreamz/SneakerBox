@@ -10,6 +10,16 @@ class ShoesController < ApplicationController
         end
     end
 
+    get '/shoes/' do
+        if logged_in?
+            @user = current_user
+            @shoes = @user.shoes
+            erb :"shoes/index"
+        else
+        redirect '/login'
+        end
+    end
+
     get '/shoes/new' do 
         if logged_in?
             erb :"shoes/new"
@@ -49,7 +59,7 @@ class ShoesController < ApplicationController
     delete '/shoes/:id' do
         setshoe
         @shoe.destroy
-        erb :"shoes/index"
+        redirect "shoes/"
     end
 
     private
