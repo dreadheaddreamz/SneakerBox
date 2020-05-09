@@ -1,1 +1,1 @@
-
+SneakerBox helps user keep track of all shoes they have added to their collection both new and old. A user will sign up for SneakerBox with their name, email, and password. Shoes can be added, updated and deleted.
