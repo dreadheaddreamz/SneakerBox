@@ -40,20 +40,38 @@ class ShoesController < ApplicationController
     end
 
     get '/shoes/:id' do
+        if logged_in? & current_user
         setshoe
         erb :"shoes/show"
+        else
+            redirect "/login"
+        end
     end
 
     get '/shoes/:id/edit' do
+        if current_user
+        setshoe
+        erb :"shoes/edit"
+        else
+            redirect "/login"
+        end
+    end
+
+    post "/shoes/:id" do
         setshoe
         erb :"shoes/edit"
     end
 
     patch '/shoes/:id' do
-        setshoe
-        new_info = params.reject!{|k| k == "_method"}
-        @shoe.update(new_info)
-        redirect "/shoes"
+        @user = current_user
+        @shoes = @user.shoes.find_by(id: params[:id])
+        if !@user
+            redirect "/login"
+        else
+            @shoes.update(name: params[:name], date: params[:date], release: params[:release], brand: params[:brand], hyperating: params[:hyperating], user_id: @user.id)
+            redirect "/shoes/#{@shoes.id}"
+            end
+
     end
 
     delete '/shoes/:id' do
@@ -66,5 +84,9 @@ class ShoesController < ApplicationController
     def setshoe
         @shoe = Shoe.find(params[:id])
     end
-    
+
+    error ActiveRecord::RecordNotFound do
+        
+      end
+
 end

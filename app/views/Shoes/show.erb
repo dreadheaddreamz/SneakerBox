@@ -58,7 +58,6 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <p><%=@shoe.release%></p>
 <p><%=@shoe.hyperating%></p>
 
-<button a href="/shoes/<%=@shoe.id%>/edit">Edit Kicks:</a></button>
 <% if @shoe.user == current_user%> 
 <form method="POST" action="/shoes/<%=@shoe.id%>">
 <input type="hidden" name="_method" value="delete">
