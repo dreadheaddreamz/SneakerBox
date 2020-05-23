@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+
+    #login in and log out
     
     get '/login' do 
         erb :'users/login'

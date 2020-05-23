@@ -1,5 +1,7 @@
 require './config/environment'
 class ShoesController < ApplicationController
+#Read 
+      #-index- like and index of ALL the shoes (get '/shoes' get request)
     get '/shoes' do
         if logged_in?
             @user = current_user
@@ -9,7 +11,7 @@ class ShoesController < ApplicationController
         redirect '/login'
         end
     end
-
+#used twice so home button can work
     get '/shoes/' do
         if logged_in?
             @user = current_user
@@ -19,7 +21,8 @@ class ShoesController < ApplicationController
         redirect '/login'
         end
     end
-
+    #Read 
+      #-index- like and index of ALL the shoes (get '/shoes' get request)
     get '/shoes/new' do 
         if logged_in?
             erb :"shoes/new"
@@ -38,7 +41,7 @@ class ShoesController < ApplicationController
             redirect '/shoes'
         end
     end
-
+#-show- like im SHOWing you the collection.(get '/shoes/:id get request)
     get '/shoes/:id' do
         if logged_in? & current_user
         setshoe
@@ -47,7 +50,7 @@ class ShoesController < ApplicationController
             redirect "/login"
         end
     end
-
+#-edit-Should render the form to edit shoes (get '/shoes/:id/edit' get request)
     get '/shoes/:id/edit' do
         if current_user
         setshoe
