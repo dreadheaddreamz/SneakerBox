@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    #where users sign up
 
     get '/signup' do 
         erb :'users/signup'

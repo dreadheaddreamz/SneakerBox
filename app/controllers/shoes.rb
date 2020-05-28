@@ -64,7 +64,7 @@ class ShoesController < ApplicationController
         setshoe
         erb :"shoes/edit"
     end
-
+#-update- form is submitted. Make patch request with updated info(patch '/shoes/:id)
     patch '/shoes/:id' do
         @user = current_user
         @shoes = @user.shoes.find_by(id: params[:id])
@@ -76,7 +76,7 @@ class ShoesController < ApplicationController
             end
 
     end
-
+#delete
     delete '/shoes/:id' do
         setshoe
         @shoe.destroy
