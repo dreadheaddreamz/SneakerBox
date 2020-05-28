@@ -82,7 +82,7 @@ class ShoesController < ApplicationController
         @shoe.destroy
         redirect "shoes/"
     end
-
+#methods that can only be called by other methods in the same class(or a class that inherits from it)
     private
     def setshoe
         @shoe = Shoe.find(params[:id])
