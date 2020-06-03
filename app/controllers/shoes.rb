@@ -12,15 +12,8 @@ class ShoesController < ApplicationController
         end
     end
 #used twice so home button can work
-    get '/shoes/' do
-        if logged_in?
-            @user = current_user
-            @shoes = @user.shoes
-            erb :"shoes/index"
-        else
-        redirect '/login'
-        end
-    end
+
+   
     #Read 
       #-index- like and index of ALL the shoes (get '/shoes' get request)
     get '/shoes/new' do 
@@ -32,20 +25,20 @@ class ShoesController < ApplicationController
     end
 
 
-    post '/shoes/new' do
+    post '/shoes' do
         shoe = current_user.shoes.new(params)
         
         if shoe.save
             redirect "/shoes/#{shoe.id}"
-        else shoe.save
+        else
             redirect '/shoes'
         end
     end
 #-show- like im SHOWing you the collection.(get '/shoes/:id get request)
     get '/shoes/:id' do
         if logged_in? & current_user
-        setshoe
-        erb :"shoes/show"
+            setshoe
+            erb :"shoes/show"
         else
             redirect "/login"
         end
@@ -53,17 +46,14 @@ class ShoesController < ApplicationController
 #-edit-Should render the form to edit shoes (get '/shoes/:id/edit' get request)
     get '/shoes/:id/edit' do
         if current_user
-        setshoe
-        erb :"shoes/edit"
+            setshoe
+            erb :"shoes/edit"
         else
             redirect "/login"
         end
     end
 
-    post "/shoes/:id" do
-        setshoe
-        erb :"shoes/edit"
-    end
+    
 #-update- form is submitted. Make patch request with updated info(patch '/shoes/:id)
     patch '/shoes/:id' do
         @user = current_user
@@ -73,7 +63,7 @@ class ShoesController < ApplicationController
         else
             @shoes.update(name: params[:name], date: params[:date], release: params[:release], brand: params[:brand], hyperating: params[:hyperating], user_id: @user.id)
             redirect "/shoes/#{@shoes.id}"
-            end
+        end
 
     end
 #delete
