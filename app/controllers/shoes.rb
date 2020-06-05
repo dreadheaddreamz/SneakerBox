@@ -1,15 +1,13 @@
 require './config/environment'
 class ShoesController < ApplicationController
+    before_action: redirect?, set_shoe
 #Read 
       #-index- like and index of ALL the shoes (get '/shoes' get request)
     get '/shoes' do
-        if logged_in?
-            @user = current_user
-            @shoes = @user.shoes
+            redirect?
+            @shoes = current_user.shoes
             erb :"shoes/index"
-        else
-        redirect '/login'
-        end
+       
     end
 #used twice so home button can work
 
@@ -17,11 +15,8 @@ class ShoesController < ApplicationController
     #Read 
       #-index- like and index of ALL the shoes (get '/shoes' get request)
     get '/shoes/new' do 
-        if logged_in?
-            erb :"shoes/new"
-        else
-            redirect '/login'
-        end
+        redirect? 
+        erb :"shoes/new"
     end
 
 
@@ -36,32 +31,25 @@ class ShoesController < ApplicationController
     end
 #-show- like im SHOWing you the collection.(get '/shoes/:id get request)
     get '/shoes/:id' do
-        if logged_in? & current_user
+        redirect?
             setshoe
             erb :"shoes/show"
-        else
-            redirect "/login"
-        end
     end
 #-edit-Should render the form to edit shoes (get '/shoes/:id/edit' get request)
     get '/shoes/:id/edit' do
-        if current_user
+        redirect?
             setshoe
             erb :"shoes/edit"
-        else
-            redirect "/login"
-        end
     end
 
     
 #-update- form is submitted. Make patch request with updated info(patch '/shoes/:id)
     patch '/shoes/:id' do
-        @user = current_user
-        @shoes = @user.shoes.find_by(id: params[:id])
-        if !@user
-            redirect "/login"
+        @shoe = current_user.shoes.find_by(id: params[:id])
+        if !@shoe
+            redirect "/shoes"
         else
-            @shoes.update(name: params[:name], date: params[:date], release: params[:release], brand: params[:brand], hyperating: params[:hyperating], user_id: @user.id)
+            @shoe.update(name: params[:name], date: params[:date], release: params[:release], brand: params[:brand], hyperating: params[:hyperating])
             redirect "/shoes/#{@shoes.id}"
         end
 
